@@ -12,7 +12,12 @@ export async function uploadImage(file) {
     return null;
   }
 
-  const imageUrl = `https://ivbjlarqgmungywotsqu.supabase.co/storage/v1/object/public/dish-images/${filePath}`;
+ const { data } = supabase.storage
+  .from("dish-images")
+  .getPublicUrl(filePath);
+
+const imageUrl = data.publicUrl;
+
   return imageUrl;
 }
 
