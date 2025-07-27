@@ -6,8 +6,9 @@ export async function uploadImage(file) {
 const filePath = `${Date.now()}-${safeName}`;
 
   const { error } = await supabase.storage
-    .from("dish-images")
-    .upload(filePath, file);
+  .from("dish-images")
+  .upload(filePath, file, { upsert: true });
+
 
   if (error) {
     console.error("Upload error:", error.message);
