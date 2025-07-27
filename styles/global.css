@@ -1,0 +1,52 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #FFF1E0;
+  color: #333;
+}
+.hero {
+  background: linear-gradient(to right, #FF6B6B, #FFADAD);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.filter-tabs {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.filter-tabs button {
+  background: #A2D5AB;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+.dish-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+}
+.dish-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+.floating-cart {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: #FF6B6B;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  font-weight: bold;
+}
