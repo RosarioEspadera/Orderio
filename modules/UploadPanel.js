@@ -1,8 +1,9 @@
 import { supabase } from "./supabaseClient.js";
+import { v4 as uuidv4 } from "https://esm.sh/uuid";
 
 export async function uploadImage(file) {
   const filePath = `${Date.now()}-${file.name}`;
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from("dish-images")
     .upload(filePath, file);
 
@@ -13,4 +14,22 @@ export async function uploadImage(file) {
 
   const imageUrl = `https://ivbjlarqgmungywotsqu.supabase.co/storage/v1/object/public/dish-images/${filePath}`;
   return imageUrl;
+}
+
+export async function uploadDish({ title, price, shop, file }) {
+  const image_url = await uploadImage(file);
+  if (!image_url) return;
+
+  const id = uuidv4(); // Optional: can be auto-generated via Supabase
+
+  const { error } = await supabase
+    .from("dishes")
+    .insert([{ id, title, price, shop, image_url }]);
+
+  if (error) {
+    console.error("Insert error:", error.message);
+    return false;
+  }
+
+  return true;
 }
