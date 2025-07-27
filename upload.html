@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orderio</title>
+  <link rel="stylesheet" href="./styles/global.css" />
+</head>
+<!-- index.html -->
+<body>
+ <form id="uploadForm">
+  <input type="file" id="dishImage" required />
+  <input type="text" placeholder="Dish title" id="dishTitle" required />
+  <input type="text" placeholder="Price" id="dishPrice" required />
+  <input type="text" placeholder="Shop name" id="dishShop" required />
+  <button type="submit">Upload Dish</button>
+</form>
+
+  <script type="module" src="./modules/UploadPanel.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
