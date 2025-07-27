@@ -2,7 +2,9 @@ import { supabase } from "./supabaseClient.js";
 import { v4 as uuidv4 } from "https://esm.sh/uuid";
 
 export async function uploadImage(file) {
-  const filePath = `${Date.now()}-${file.name}`;
+  const safeName = file.name.replace(/[^\w.-]/g, "_");
+const filePath = `${Date.now()}-${safeName}`;
+
   const { error } = await supabase.storage
     .from("dish-images")
     .upload(filePath, file);
@@ -11,9 +13,6 @@ export async function uploadImage(file) {
     console.error("Upload error:", error.message);
     return null;
   }
-const safeName = file.name.replace(/[^\w.-]/g, "_");
-const filePath = `${Date.now()}-${safeName}`;
-
  const { data } = supabase.storage
   .from("dish-images")
   .getPublicUrl(filePath);
