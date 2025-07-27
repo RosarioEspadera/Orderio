@@ -11,6 +11,8 @@ export async function uploadImage(file) {
     console.error("Upload error:", error.message);
     return null;
   }
+const safeName = file.name.replace(/[^\w.-]/g, "_");
+const filePath = `${Date.now()}-${safeName}`;
 
  const { data } = supabase.storage
   .from("dish-images")
