@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orderio</title>
+  <link rel="stylesheet" href="./styles/global.css" />
+</head>
+<!-- index.html -->
+<body>
+  <header class="hero">
+    <h1>Your Cravings, Their Cooking</h1>
+    <p>Order fresh dishes from local stores — fast, warm, real.</p>
+  </header>
+
+  <section class="filter-tabs">
+    <button>Rice Meals</button>
+    <button>Drinks</button>
+    <button>Vegetarian</button>
+    <!-- Dynamically filled via Supabase -->
+  </section>
+
+  <main class="menu-grid">
+    <!-- DishCard components here -->
+    <div class="dish-card">
+      <img src="dish.jpg" alt="Dish Thumbnail" />
+      <h2>Flat White</h2>
+      <p>₱110 · Rio’s Café</p>
+      <button>Order Now</button>
+    </div>
+    <!-- More dish cards -->
+  </main>
+
+  <div class="floating-cart">
+    🛒 3 items
+  </div>
+  <script type="module" src="./modules/menuLoader.js"></script>
+</body>
+
+</html>
