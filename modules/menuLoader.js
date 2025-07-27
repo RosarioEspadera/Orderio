@@ -1,42 +1,27 @@
-// Sample dish data – replace with Supabase fetch later
-const dishes = [
-  {
-    title: "Flat White",
-    price: "₱110",
-    shop: "Rio’s Café",
-    image: "https://github.com/RosarioEspadera/OrderCafe/blob/main/public/images/FlatWhite.png"
-  },
-  {
-    title: "Steak",
-    price: "₱180",
-    shop: "Rio’s Café",
-    image: "https://github.com/RosarioEspadera/OrderCafe/blob/main/public/images/Steak.png"
+import { supabase } from "./supabaseClient.js";
+
+async function fetchDishes() {
+  const { data, error } = await supabase
+    .from("dishes")
+    .select("*");
+
+  if (error) {
+    console.error("Supabase fetch error:", error);
+    return [];
   }
-];
 
-const categories = ["Rice Meals", "Drinks", "Vegetarian"];
-
-const cart = [];
-const menuGrid = document.getElementById("menuGrid");
-const categoryTabs = document.getElementById("categoryTabs");
-const floatingCart = document.getElementById("floatingCart");
-
-function renderCategories() {
-  categoryTabs.innerHTML = "";
-  categories.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.textContent = cat;
-    categoryTabs.appendChild(btn);
-  });
+  return data;
 }
 
-function renderDishes() {
+async function renderDishes() {
+  const dishes = await fetchDishes();
   menuGrid.innerHTML = "";
+
   dishes.forEach(dish => {
     const card = document.createElement("div");
     card.className = "dish-card";
     card.innerHTML = `
-      <img src="${dish.image}" alt="${dish.title}" />
+      <img src="${dish.image_url}" alt="${dish.title}" />
       <h2>${dish.title}</h2>
       <p>${dish.price} · ${dish.shop}</p>
       <button>Add to Cart</button>
@@ -48,6 +33,7 @@ function renderDishes() {
     menuGrid.appendChild(card);
   });
 }
+
 
 function updateCart() {
   floatingCart.textContent = `🛒 ${cart.length} items`;
